@@ -243,16 +243,26 @@ def package_grpc(protos_path, package_name, wheel=False):
     if not os.path.isdir(dist_dir):
         os.mkdir(dist_dir)
 
-    whl_glob = os.path.join(package_path, 'dist', '*.whl')
-    whl_files = glob.glob(whl_glob)
-    if not whl_files:
-        raise FileNotFoundError(f'Wheel not created at {package_path}')
-    if len(whl_files) != 1:
-        raise RuntimeError('Multiple wheel files generated')
+    if wheel:
+        whl_glob = os.path.join(package_path, 'dist', '*.whl')
+        whl_files = glob.glob(whl_glob)
+        if not whl_files:
+            raise FileNotFoundError(f'Wheel not created at {package_path}')
+        if len(whl_files) != 1:
+            raise RuntimeError('Multiple wheel files generated')
+        dist_file = whl_files[0]
+    else:
+        dist_glob = os.path.join(package_path, 'dist', '*.tar.gz')
+        dist_files = glob.glob(dist_glob)
+        if not dist_files:
+            raise FileNotFoundError(f'Source distribution not created at {package_path}')
+        if len(dist_files) != 1:
+            raise RuntimeError('Source distribution files generated')
+        dist_file = dist_files[0]
 
-    tgt_pth = os.path.join(dist_dir, os.path.basename(whl_files[0]))
-    final_pth = shutil.move(whl_files[0], tgt_pth)
-    print(f'Built wheel for {package_name} at:\n{final_pth}')
+    tgt_pth = os.path.join(dist_dir, os.path.basename(dist_file))
+    final_pth = shutil.move(dist_file, tgt_pth)
+    print(f'Built python package for {package_name} at:\n{final_pth}')
 
 
 def main():
