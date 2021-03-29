@@ -183,8 +183,6 @@ service MapdlService{
   
   rpc SendCommand( CmdRequest)				returns ( CmdResponse);
   rpc SendCommandS( CmdRequest)				returns ( stream CmdOutput);
-    
-  // rpc RequestVersion( kernel.v0.EmptyRequest) returns ( GetResponse);
   
   rpc InputFileLocal( stream CmdRequest)		returns ( stream kernel.v0.Chunk);
   rpc InputFile(  InputFileRequest)			returns ( stream kernel.v0.Chunk);
