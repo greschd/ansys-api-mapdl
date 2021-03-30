@@ -12,7 +12,7 @@ dpf protos package.
 git clone https://github.com/pyansys/protos-mapdl
 cd protos-mapdl
 pip install -r requirements_build.txt
-python package_grpc.py protos mapdl
+python package_grpc.py mapdl
 ```
 
 These protobuf interface files can be used to develop a custom python
