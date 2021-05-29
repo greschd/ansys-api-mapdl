@@ -1,9 +1,9 @@
 ### Protocol Files for PyMAPDL Interface
-This repository includes gRPC protocol files to interface with Mapdl's
+This repository includes gRPC protocol files to interface with MAPDL's
 gRPC interface.
 
 ### Build
-To build the `ansys-mapdl-core` package locally, clone this
+To build the `ansys-grpc-mapdl` package locally, clone this
 repository, install build requirements, and build the mapdl protos
 package with
 
@@ -23,3 +23,5 @@ package for distribution.
 ### CI/CD
 
 Packages are automatically generated from GitHub Actions for each commit and PR.  To download the automatically generated package, visit the actions tab at [Actions](https://github.com/pyansys/protos-mapdl/actions).
+
+To create a release, bump the version tag in `mapdl/VERSION`, and tag a release with `git tag <version>` (e.g. `0.4.0`).
